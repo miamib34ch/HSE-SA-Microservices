@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Any, List, TypeVar, Callable, Type, cast
+from Models.Waypoint import NewWaypoint, Waypoint
 
 
 T = TypeVar("T")
@@ -15,19 +16,9 @@ def from_str(x: Any) -> str:
     return x
 
 
-def from_float(x: Any) -> float:
-    assert isinstance(x, (float, int)) and not isinstance(x, bool)
-    return float(x)
-
-
 def from_list(f: Callable[[Any], T], x: Any) -> List[T]:
     assert isinstance(x, list)
     return [f(y) for y in x]
-
-
-def to_float(x: Any) -> float:
-    assert isinstance(x, float)
-    return x
 
 
 def to_class(c: Type[T], x: Any) -> dict:
@@ -36,47 +27,8 @@ def to_class(c: Type[T], x: Any) -> dict:
 
 
 @dataclass
-class Material:
-    material_id: int
-    title: str
-
-    @staticmethod
-    def from_dict(obj: Any) -> 'Material':
-        assert isinstance(obj, dict)
-        material_id = from_int(obj.get("material_id"))
-        title = from_str(obj.get("title"))
-        return Material(material_id, title)
-
-    def to_dict(self) -> dict:
-        result: dict = {"material_id": from_int(self.material_id), "title": from_str(self.title)}
-        return result
-
-
-@dataclass
-class Waypoint:
-    latitude: float
-    longitude: float
-    description: str
-    materials: List[Material]
-
-    @staticmethod
-    def from_dict(obj: Any) -> 'Waypoint':
-        assert isinstance(obj, dict)
-        latitude = from_float(obj.get("latitude"))
-        longitude = from_float(obj.get("longitude"))
-        description = from_str(obj.get("description"))
-        materials = from_list(Material.from_dict, obj.get("materials"))
-        return Waypoint(latitude, longitude, description, materials)
-
-    def to_dict(self) -> dict:
-        result: dict = {"latitude": to_float(self.latitude), "longitude": to_float(self.longitude),
-                        "description": from_str(self.description),
-                        "materials": from_list(lambda x: to_class(Material, x), self.materials)}
-        return result
-
-
-@dataclass
 class Route:
+    route_id: int
     name: str
     description: str
     waypoints: List[Waypoint]
@@ -84,13 +36,15 @@ class Route:
     @staticmethod
     def from_dict(obj: Any) -> 'Route':
         assert isinstance(obj, dict)
+        route_id = from_int(obj.get("route_id"))
         name = from_str(obj.get("name"))
         description = from_str(obj.get("description"))
         waypoints = from_list(Waypoint.from_dict, obj.get("waypoints"))
-        return Route(name, description, waypoints)
+        return Route(route_id, name, description, waypoints)
 
     def to_dict(self) -> dict:
-        result: dict = {"name": from_str(self.name), "description": from_str(self.description),
+        result: dict = {"route_id": from_int(self.route_id), "name": from_str(self.name),
+                        "description": from_str(self.description),
                         "waypoints": from_list(lambda x: to_class(Waypoint, x), self.waypoints)}
         return result
 
@@ -101,3 +55,56 @@ def route_from_dict(s: Any) -> Route:
 
 def route_to_dict(x: Route) -> Any:
     return to_class(Route, x)
+
+
+@dataclass
+class NewRoute:
+    name: str
+    description: str
+    waypoints: List[NewWaypoint]
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'NewRoute':
+        assert isinstance(obj, dict)
+        name = from_str(obj.get("name"))
+        description = from_str(obj.get("description"))
+        waypoints = from_list(NewWaypoint.from_dict, obj.get("waypoints"))
+        return NewRoute(name, description, waypoints)
+
+    def to_dict(self) -> dict:
+        result: dict = {"name": from_str(self.name), "description": from_str(self.description),
+                        "waypoints": from_list(lambda x: to_class(NewWaypoint, x), self.waypoints)}
+        return result
+
+
+def new_route_from_dict(s: Any) -> NewRoute:
+    return NewRoute.from_dict(s)
+
+
+def new_route_to_dict(x: NewRoute) -> Any:
+    return to_class(NewRoute, x)
+
+
+@dataclass
+class EditRoute:
+    name: str | None = None
+    description: str | None = None
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'EditRoute':
+        assert isinstance(obj, dict)
+        name = from_str(obj.get("name"))
+        description = from_str(obj.get("description"))
+        return EditRoute(name, description)
+
+    def to_dict(self) -> dict:
+        result: dict = {"name": from_str(self.name), "description": from_str(self.description)}
+        return result
+
+
+def edit_route_from_dict(s: Any) -> EditRoute:
+    return EditRoute.from_dict(s)
+
+
+def edit_route_to_dict(x: EditRoute) -> Any:
+    return to_class(EditRoute, x)
