@@ -1,0 +1,34 @@
+name: Python package
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12"]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
+        
+    - name: Install dependencies
+      run: |
+        pip install -r user_service/requirements.txt
+        pip install -r route_waypoint_service/requirements.txt
+        pip install -r gateway_service/requirements.txt
+
+    - name: Run tests
+      run: |
+        pytest user_service/tests/
+        
