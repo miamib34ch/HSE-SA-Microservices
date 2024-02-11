@@ -39,9 +39,7 @@ jobs:
         docker build -t hse-sa-api-gateway_service ./gateway_service
 
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push hse-sa-api-user_service
-        docker push hse-sa-api-route_waypoint_service
-        docker push hse-sa-api-gateway_service
+        docker push bogdanpolygalov/hse-sa-microservice:tagname
 
     - name: Deploy locally
       run: docker-compose -f docker-compose.yml up -d
