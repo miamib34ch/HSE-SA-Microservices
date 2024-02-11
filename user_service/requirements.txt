@@ -2,3 +2,5 @@ fastapi
 pydantic
 uvicorn
 python-jose[cryptography]
+pytest
+httpx

@@ -4,3 +4,4 @@ uvicorn
 python-jose[cryptography]
 python-multipart
 httpx
+pytest
