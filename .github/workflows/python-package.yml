@@ -48,4 +48,4 @@ jobs:
         docker push bogdanpolygalov/hse-sa-microservice:gateway_service
 
     - name: Deploy locally
-      run: docker-compose up
+      run: docker-compose -f docker-compose-cd.yml up -d
