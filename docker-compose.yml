@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  gateway_service:
+    build: ./gateway_service
+    command: uvicorn app.gateway_service:app --reload --host 0.0.0.0 --port 8001
+    volumes:
+      - ./gateway_service/:/app/
+    ports:
+      - "8001:8001"
+
+  user_service:
+    build: ./user_service
+    command: uvicorn app.user_service:app --reload --host 0.0.0.0 --port 8002
+    volumes:
+      - ./user_service/:/app/
+    ports:
+      - "8002:8002"
+
+  route_waypoint_service:
+    build: ./route_waypoint_service
+    command: uvicorn app.route_waypoint_service:app --reload --host 0.0.0.0 --port 8003
+    volumes:
+      - ./route_waypoint_service/:/app/
+    ports:
+      - "8003:8003"

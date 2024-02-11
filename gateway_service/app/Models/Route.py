@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Any, List, TypeVar, Callable, Type, cast
-from Models.Waypoint import NewWaypoint, Waypoint
+from app.Models.Waypoint import NewWaypoint, Waypoint
 
 
 T = TypeVar("T")

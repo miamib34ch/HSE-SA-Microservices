@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import List, Any, TypeVar, Callable, Type, cast
-from Models.Route import Route
+from app.Models.Route import Route
 
 
 T = TypeVar("T")

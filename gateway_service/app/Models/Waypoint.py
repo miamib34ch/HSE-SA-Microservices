@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Any, List, TypeVar, Callable, Type, cast
-from Models.Material import Material
+from app.Models.Material import Material
 
 T = TypeVar("T")
 
