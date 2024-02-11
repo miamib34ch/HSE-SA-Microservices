@@ -1,4 +1,4 @@
-name: Python package
+name: CI and CD
 
 on:
   push:
@@ -46,6 +46,3 @@ jobs:
         docker push bogdanpolygalov/hse-sa-microservice:user_service
         docker push bogdanpolygalov/hse-sa-microservice:route_waypoint_service
         docker push bogdanpolygalov/hse-sa-microservice:gateway_service
-
-    - name: Deploy locally
-      run: docker-compose -f docker-compose-cd.yml up -d
