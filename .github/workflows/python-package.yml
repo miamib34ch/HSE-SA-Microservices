@@ -32,3 +32,16 @@ jobs:
       run: |
         pytest user_service/tests/
         
+    - name: Build and push Docker
+      run: |
+        docker build -t hse-sa-api-user_service ./user_service
+        docker build -t hse-sa-api-route_waypoint_service ./route_waypoint_service
+        docker build -t hse-sa-api-gateway_service ./gateway_service
+
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker push hse-sa-api-user_service
+        docker push hse-sa-api-route_waypoint_service
+        docker push hse-sa-api-gateway_service
+
+    - name: Deploy locally
+      run: docker-compose -f docker-compose.yml up -d
