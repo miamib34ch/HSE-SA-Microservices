@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  gateway_service:
+    image: bogdanpolygalov/hse-sa-microservice:gateway_service
+    command: uvicorn app.gateway_service:app --reload --host 0.0.0.0 --port 8001
+    ports:
+      - "8001:8001"
+
+  user_service:
+    image: bogdanpolygalov/hse-sa-microservice:user_service
+    command: uvicorn app.user_service:app --reload --host 0.0.0.0 --port 8002
+    ports:
+      - "8002:8002"
+
+  route_waypoint_service:
+    image: bogdanpolygalov/hse-sa-microservice:route_waypoint_service
+    command: uvicorn app.route_waypoint_service:app --reload --host 0.0.0.0 --port 8003
+    ports:
+      - "8003:8003"
