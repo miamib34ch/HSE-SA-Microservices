@@ -48,7 +48,7 @@ async def read_user(user_id: int):
 
 
 @app.put("/user/{user_id}", response_model=User, status_code=200)
-async def create_user(user_id: int, edit_user: EditUser):
+async def update_user(user_id: int, edit_user: EditUser):
     async with httpx.AsyncClient() as client:
         response = await client.put(f"{USER_SERVICE_URL}{user_id}", json=edit_user.to_dict())
 
@@ -64,7 +64,7 @@ async def create_user(user_id: int, edit_user: EditUser):
 
 
 @app.delete("/user/{user_id}", response_model={}, status_code=204)
-async def create_user(user_id: int):
+async def delete_user(user_id: int):
     async with httpx.AsyncClient() as client:
         response = await client.delete(f"{USER_SERVICE_URL}{user_id}")
 
