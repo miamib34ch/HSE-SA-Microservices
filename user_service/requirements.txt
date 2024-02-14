@@ -3,4 +3,5 @@ pydantic
 uvicorn
 python-jose[cryptography]
 pytest
+pytest-asyncio
 httpx

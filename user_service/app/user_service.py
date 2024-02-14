@@ -45,7 +45,7 @@ async def read_user(user_id: int):
 
 
 @app.put("/user/{user_id}", response_model=User, status_code=200)
-async def create_user(user_id: int, edit_user: EditUser):
+async def update_user(user_id: int, edit_user: EditUser):
     if user_id not in user_database:
         raise HTTPException(status_code=404, detail="Пользователь с указанным user_id не найден")
 
@@ -64,7 +64,7 @@ async def create_user(user_id: int, edit_user: EditUser):
 
 
 @app.delete("/user/{user_id}", response_model={}, status_code=204)
-async def create_user(user_id: int):
+async def delete_user(user_id: int):
     if user_id not in user_database:
         raise HTTPException(status_code=404, detail="Пользователь с указанным user_id не найден")
 
