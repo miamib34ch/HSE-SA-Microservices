@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.security import HTTPBearer
 import httpx
+import os
 
 from app.Models.User import User, NewUser, EditUser
 from app.Models.Route import Route, NewRoute, EditRoute
@@ -10,9 +11,9 @@ from app.Models.Waypoint import Waypoint, NewWaypoint, EditWaypoint
 app = FastAPI()
 bearer_scheme = HTTPBearer()
 
-USER_SERVICE_URL = "http://user_service:8002/user/"
-ROUTE_URL = "http://route_waypoint_service:8003/route/"
-POINT_URL = "http://route_waypoint_service:8003/point/"
+USER_SERVICE_URL = str(os.environ.get('USER_SERVICE_URL')) + "/user/"
+ROUTE_URL = str(os.environ.get('ROUTE_URL')) + "/route/"
+POINT_URL = str(os.environ.get('POINT_URL ')) + "/point/"
 
 
 @app.post("/user/", response_model=User, status_code=201)

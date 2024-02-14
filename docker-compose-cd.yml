@@ -6,6 +6,10 @@ services:
     command: uvicorn app.gateway_service:app --reload --host 0.0.0.0 --port 8001
     ports:
       - "8001:8001"
+    environment:
+      - USER_SERVICE_URL=http://user_service:8002
+      - ROUTE_URL=http://route_waypoint_service:8003
+      - POINT_URL=http://route_waypoint_service:8003
 
   user_service:
     image: bogdanpolygalov/hse-sa-microservice:user_service

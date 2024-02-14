@@ -8,6 +8,10 @@ services:
       - ./gateway_service/:/app/
     ports:
       - "8001:8001"
+    environment:
+      - USER_SERVICE_URL=http://user_service:8002
+      - ROUTE_URL=http://route_waypoint_service:8003
+      - POINT_URL=http://route_waypoint_service:8003
 
   user_service:
     build: ./user_service
