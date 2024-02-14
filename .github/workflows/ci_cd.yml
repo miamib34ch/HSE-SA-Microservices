@@ -36,15 +36,15 @@ jobs:
         
     - name: Build Docker images
       run: |
-        docker build -t bogdanpolygalov/hse-sa-microservice:user_service ./user_service
-        docker build -t bogdanpolygalov/hse-sa-microservice:route_waypoint_service ./route_waypoint_service
-        docker build -t bogdanpolygalov/hse-sa-microservice:gateway_service ./gateway_service
+        docker build -t ${{ secrets.DOCKER_REPOSITORY }}:user_service ./user_service
+        docker build -t ${{ secrets.DOCKER_REPOSITORY }}:route_waypoint_service ./route_waypoint_service
+        docker build -t ${{ secrets.DOCKER_REPOSITORY }}:gateway_service ./gateway_service
 
     - name: Log in to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push Docker images
       run: |
-        docker push bogdanpolygalov/hse-sa-microservice:user_service
-        docker push bogdanpolygalov/hse-sa-microservice:route_waypoint_service
-        docker push bogdanpolygalov/hse-sa-microservice:gateway_service
+        docker push ${{ secrets.DOCKER_REPOSITORY }}:user_service
+        docker push ${{ secrets.DOCKER_REPOSITORY }}:route_waypoint_service
+        docker push ${{ secrets.DOCKER_REPOSITORY }}:gateway_service
