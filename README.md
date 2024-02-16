@@ -40,5 +40,3 @@
   - `​​touch filePath` - создать файл в контейнере (предварительно нужно зайти в него)  
   - `​​echo "Some text" >> fileName` - скопировать текст в файл в контейнере (предварительно нужно зайти в него)  
   - `​​docker rm -vf containerIdentificator1 containerIdentificator2` - удалить контейнеры
- 
-## Отчёт
