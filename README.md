@@ -1,4 +1,4 @@
-# Лабораторная работа №5 - Микросервисы, Docker, CI&CD 
+# Лабораторная работа №5 - Микросервисы, Docker, CI&CD  
 
 Выполнили [Полыгалов Богдан](https://github.com/miamib34ch) и [Тетенова Алёна](https://github.com/alenatetenova)
 
