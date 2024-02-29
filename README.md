@@ -1,7 +1,5 @@
 # Лабораторная работа №5 - Микросервисы, Docker, CI&CD   
 
-Выполнили [Полыгалов Богдан](https://github.com/miamib34ch) и [Тетенова Алёна](https://github.com/alenatetenova)
-
 [Остальные проекты по дисциплине](https://github.com/miamib34ch/HSE-SoftwareArchitecture)
 
 ## Постановка задания
