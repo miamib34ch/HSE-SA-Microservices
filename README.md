@@ -1,4 +1,4 @@
-# Лабораторная работа №5 - Микросервисы, Docker, CI&CD   
+# Лабораторная работа №5 - Микросервисы, Docker, CI&CD
 
 [Остальные проекты по дисциплине](https://github.com/miamib34ch/HSE-SoftwareArchitecture)
 
